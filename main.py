@@ -10,55 +10,25 @@ from urlparse import parse_qsl
 import xbmcgui
 import xbmcplugin
 
+import urllib2
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
+    
 # Get the plugin url in plugin:// notation.
 _url = sys.argv[0]
 # Get the plugin handle as an integer number.
 _handle = int(sys.argv[1])
 
-# Free sample videos are provided by www.vidsplay.com
-# Here we use a fixed set of properties simply for demonstrating purposes
-# In a "real life" plugin you will need to get info and links to video files/streams
-# from some web-site or online service.
-VIDEOS = {'Animals': [{'name': 'Crab',
-                       'thumb': 'http://www.vidsplay.com/wp-content/uploads/2017/04/crab-screenshot.jpg',
-                       'video': 'http://www.vidsplay.com/wp-content/uploads/2017/04/crab.mp4',
-                       'genre': 'Animals'},
-                      {'name': 'Alligator',
-                       'thumb': 'http://www.vidsplay.com/wp-content/uploads/2017/04/alligator-screenshot.jpg',
-                       'video': 'http://www.vidsplay.com/wp-content/uploads/2017/04/alligator.mp4',
-                       'genre': 'Animals'},
-                      {'name': 'Turtle',
-                       'thumb': 'http://www.vidsplay.com/wp-content/uploads/2017/04/turtle-screenshot.jpg',
-                       'video': 'http://www.vidsplay.com/wp-content/uploads/2017/04/turtle.mp4',
-                       'genre': 'Animals'}
-                      ],
-            'Cars': [{'name': 'Postal Truck',
-                      'thumb': 'http://www.vidsplay.com/wp-content/uploads/2017/05/us_postal-screenshot.jpg',
-                      'video': 'http://www.vidsplay.com/wp-content/uploads/2017/05/us_postal.mp4',
-                      'genre': 'Cars'},
-                     {'name': 'Traffic',
-                      'thumb': 'http://www.vidsplay.com/wp-content/uploads/2017/05/traffic1-screenshot.jpg',
-                      'video': 'http://www.vidsplay.com/wp-content/uploads/2017/05/traffic1.mp4',
-                      'genre': 'Cars'},
-                     {'name': 'Traffic Arrows',
-                      'thumb': 'http://www.vidsplay.com/wp-content/uploads/2017/05/traffic_arrows-screenshot.jpg',
-                      'video': 'http://www.vidsplay.com/wp-content/uploads/2017/05/traffic_arrows.mp4',
-                      'genre': 'Cars'}
-                     ],
-            'Food': [{'name': 'Chicken',
-                      'thumb': 'http://www.vidsplay.com/wp-content/uploads/2017/05/bbq_chicken-screenshot.jpg',
-                      'video': 'http://www.vidsplay.com/wp-content/uploads/2017/05/bbqchicken.mp4',
-                      'genre': 'Food'},
-                     {'name': 'Hamburger',
-                      'thumb': 'http://www.vidsplay.com/wp-content/uploads/2017/05/hamburger-screenshot.jpg',
-                      'video': 'http://www.vidsplay.com/wp-content/uploads/2017/05/hamburger.mp4',
-                      'genre': 'Food'},
-                     {'name': 'Pizza',
-                      'thumb': 'http://www.vidsplay.com/wp-content/uploads/2017/05/pizza-screenshot.jpg',
-                      'video': 'http://www.vidsplay.com/wp-content/uploads/2017/05/pizza.mp4',
-                      'genre': 'Food'}
-                     ]}
+def get_jsonparsed_data(url):
+    response = urlopen(url)
+    data = response.read().decode("utf-8")
+    return json.loads(data)
 
+url = ("http://192.168.31.102:11111/stream-playlist")
+
+VIDEOS = get_jsonparsed_data(url)
 
 def get_url(**kwargs):
     """
