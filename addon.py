@@ -1,34 +1,27 @@
 # -*- coding: utf-8 -*-
 # Module: default
-# Author: Roman V. M.
-# Created on: 28.11.2014
+# Author: fallen90
+# Created on: 22.11.2018
 # License: GPL v.3 https://www.gnu.org/copyleft/gpl.html
 
 import sys
-from urllib import urlencode
+from urllib import urlencode, urlopen
 from urlparse import parse_qsl
+import json
 import xbmcgui
 import xbmcplugin
-
-import urllib2
-try:
-    from urllib.request import urlopen
-except ImportError:
-    from urllib2 import urlopen
     
 # Get the plugin url in plugin:// notation.
 _url = sys.argv[0]
 # Get the plugin handle as an integer number.
 _handle = int(sys.argv[1])
 
-def get_jsonparsed_data(url):
+def getJSONData(url):
     response = urlopen(url)
-    data = response.read().decode("utf-8")
-    return json.loads(data)
+    data = json.loads(response.read())
+    return data;
 
-url = ("http://192.168.31.102:11111/init?redirect=stream-playlist")
-
-VIDEOS = get_jsonparsed_data(url)
+VIDEOS = getJSONData(url="http://192.168.31.102:11111/init?redirect=stream-playlist")
 
 def get_url(**kwargs):
     """

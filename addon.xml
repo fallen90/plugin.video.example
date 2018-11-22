@@ -1,25 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<addon id="plugin.video.example"
-version="2.3.1"
-name="Example Kodi Video Plugin"
-provider-name="Roman_V_M">
-<requires>
-  <import addon="xbmc.python" version="2.25.0"/>
-</requires>
-<extension point="xbmc.python.pluginsource" library="main.py">
-  <provides>video</provides>
-</extension>
-<extension point="xbmc.addon.metadata">
-  <summary lang="en">Example Kodi Video Plugin</summary>
-  <description lang="en_GB">An example video plugin for Kodi mediacenter.</description>
-  <disclaimer lang="en_GB">Free sample videos are provided by www.vidsplay.com.</disclaimer>
-  <assets>
-    <icon>icon.png</icon>
-    <fanart>fanart.jpg</fanart>
-    <screenshot>resources\screenshot-01.jpg</screenshot>
-    <screenshot>resources\screenshot-02.jpg</screenshot>
-    <screenshot>resources\screenshot-03.jpg</screenshot>    
-  </assets>
-  <news>Updated with latest artwork metadata</news>
-</extension>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.example" name="ERAPlayer Video Stream" version="2.3.2" provider-name="fallen90">
+  <requires>
+    <import addon="xbmc.python" version="2.25.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">Fetch stream playlist</summary>
+    <description lang="en_GB">Fetch stream playlist</description>
+    <disclaimer lang="en_GB"></disclaimer>
+    <language>en</language> <!-- the language of the videos the plugin provides, may be left blank -->
+    <platform>all</platform>
+    <license>GPL-2.0</license>
+    <forum></forum> <!-- may be left blank  -->
+    <website></website> <!-- the url of the website that contains the videos (or the official website of your plugin).  -->
+    <email></email> <!-- may be left blank  -->
+    <source></source>
+    <news></news>
+    <assets>
+        <icon>resources/icon.png</icon>
+        <fanart>resources/fanart.jpg</fanart>
+        <banner></banner>
+        <clearlogo></clearlogo>
+        <screenshot>screenshot-01.jpg</screenshot>
+    </assets>
+  </extension>
 </addon>
