@@ -26,7 +26,7 @@ def get_jsonparsed_data(url):
     data = response.read().decode("utf-8")
     return json.loads(data)
 
-url = ("http://192.168.31.102:11111/stream-playlist")
+url = ("http://192.168.31.102:11111/init?redirect=stream-playlist")
 
 VIDEOS = get_jsonparsed_data(url)
 
